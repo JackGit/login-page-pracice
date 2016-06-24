@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>Login</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: lightseagreen;
+        }
+        main {
+            position: absolute;
+            top: 1.4rem;
+            width: 3rem;
+            height: 2rem;
+            background: red;
+        }
+        .unit {
+            width: 1rem;
+            height: 1rem;
+            background: black;
+        }
+        .unit-v {
+            width: 10vw;
+            height: 10vw;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="unit"></div>
+        <div class="unit-v"></div>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+<script>
+    function initRootFontSize () {
+        // if the width in design is 640px
+        document.documentElement.style.fontSize = window.screen.width / 6.4 + 'px';
+    }
+
+    initRootFontSize();
+
+</script>
+</html>
