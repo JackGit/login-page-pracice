@@ -9,9 +9,10 @@
             width: 100%;
             height: 100%;
         }
-        * {
+        *, *:before, *:after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         body {
             background: lightseagreen;
@@ -33,7 +34,7 @@
         }
         .login-form-row {
             width: 100%;
-            height: 1.31rem;
+            height: 1.71rem;
             padding-top: 0.4rem;
             border-bottom: 1px solid rgba(0,0,0,0.2);
         }
@@ -59,10 +60,18 @@
             height: 0.67rem;
             display: inline-block;
             background: lightcoral;
+            vertical-align: top;
+            margin-top: 0.26rem;
         }
         .login-form-row input {
             border: none;
-            width: 7.16rem;
+            width: 7.38rem;
+            height: 100%;
+            display: inline-block;
+            outline: none;
+            vertical-align: top;
+            font-size: 0.44rem;
+            font-weight: 300;
         }
     </style>
 </head>
