@@ -8,6 +8,10 @@
         html {
             width: 100%;
             height: 100%;
+            font-family: arial;
+        }
+        body {
+            height: 100%;
         }
         *, *:before, *:after {
             margin: 0;
@@ -17,10 +21,19 @@
         body {
             background: lightseagreen;
         }
+        .login {
+            position: relative;
+            height: 100%;
+        }
+        .login.inactive {
+            display: none;
+        }
         .logo {
-            margin: 2.22rem auto 0 auto;
             width: 5rem;
             height: 4.17rem;
+            position: absolute;
+            top: 2.22rem;
+            left: 2.5rem;
             background: palegreen;
         }
         .login-form {
@@ -29,8 +42,9 @@
             width: 100%;
             height: 50%;
             background: silver;
-            padding: 0.5rem 0.83rem;
+            padding: 0.2rem 0.83rem;
             box-sizing: border-box;
+            text-align: center;
         }
         .login-form-row {
             width: 100%;
@@ -39,12 +53,60 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
         }
         .login-form-submit {
-            margin: 1.67rem 0 0.72rem 0;
+            margin: 1.51rem 0 0.42rem 0;
             width: 100%;
             height: 1.33rem;
             text-align: center;
             border-radius: 0.65rem;
             border: none;
+            outline: none;
+            cursor: pointer;
+            background: darkred;
+            color: white;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+            transition: width .3s .4s ease, color .1s .4s ease;
+        }
+        .login-form-submit:active {
+
+        }
+        .login-form-submit:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.5rem;
+            width: 1rem;
+            height: 1rem;
+            display: inline-block;
+            border: 2px dotted white;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity .3s .6s ease;
+        }
+        .login-form-submit.processing {
+            width: 1.33rem;
+            color: transparent;
+        }
+        .login-form-submit.processing:after {
+            opacity: 1;
+            -webkit-animation: rotate 0.5s 0.4s infinite linear;
+            animation: rotate 0.5s 0.4s infinite linear;
+        }
+        .login-form-submit.success {
+            transition: transform .3s .3s ease, opacity .3s .3s ease, background-color .2s .3s ease;
+            opacity: 0.8;
+            transform: scale(30);
+        }
+        .login-form-submit.success:after {
+            transition: opacity .2s ease;
+            opacity: 0;
+            animation: none;
         }
         .login-form p {
             font-family: arial;
@@ -65,7 +127,7 @@
         }
         .login-form-row input {
             border: none;
-            width: 7.38rem;
+            width: 7.16rem;
             height: 100%;
             display: inline-block;
             outline: none;
@@ -73,13 +135,222 @@
             font-size: 0.44rem;
             font-weight: 300;
         }
+
+        .home {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: lightcyan;
+            display: none;
+            opacity: 0;
+            transition: transform .3s cubic-bezier(0.68, -0.45, 0.465, 1.25), opacity .3s;
+            transform: scale(1.2);
+        }
+        .home.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .home-top {
+            position: relative;
+            height: 9rem;
+            background: lightskyblue;
+            padding: 0.5rem;
+        }
+        .home-btn-icon {
+            width: 0.67rem;
+            height: 0.67rem;
+            border: none;
+            outline: none;
+        }
+        .home-btn-icon.right {
+            float: right;
+        }
+        .home-btn-icon.left {
+            float: left;
+        }
+        .home-top .greeting {
+            margin-top: 1.33rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: arial;
+            font-weight: 200;
+            color: white;
+            font-size: 24px;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform .5s .4s ease, opacity .5s .4s ease;
+        }
+        .home.active .home-top .greeting {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .home-top .user {
+            text-align: center;
+        }
+        .home-top .user img {
+            width: 3rem;
+            height: 3rem;
+            background: lightseagreen;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            transition: transform .3s 0.6s ease;
+            transform: scale(0);
+        }
+        .home.active .home-top .user img {
+            transform: scale(1);
+        }
+        .home-top .user span {
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: lightgreen;
+            display: inline-block;
+            transform: translateX(-90%);
+            text-align: center;
+            line-height: 1rem;
+            font-size: 16px;
+            color: white;
+            font-family: arial;
+        }
+        .home-top .month-nav {
+            width: 100%;
+            font-size: 16px;
+            font-family: arial;
+            text-align: center;
+            color: rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .month-nav .nav-icon {
+            display: inline-block;
+            width: 0.67rem;
+            height: 0.67rem;
+            background: lightgrey;
+        }
+        .left {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+        .home-bottom {
+
+        }
+        .home-bottom .home-week {
+            padding: 0.5rem;
+            height: 2.33rem;
+            background: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .home-bottom .home-week .week-day {
+            width: 14%;
+            font-size: 14px;
+            text-align: center;
+            color: rgba(0,0,0,0.3);
+        }
+        .home-bottom .home-week .week-day.date {
+            color: rgba(0,0,0,0.9);
+        }
+        .home-list li {
+            position: relative;
+            width: 100%;
+            height: 2rem;
+            padding: 0.33rem 0.66rem 0.33rem 2.5rem;
+            border-top: 1px solid #EEEEEF;
+            background: #FFFFFF;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(-50%);
+        }
+        .home-list li:nth-child(1) {
+            transition: transform .3s 1s, ease, opacity .3s 1s ease;
+        }
+        .home-list li:nth-child(2) {
+            transition: transform .3s 1.1s, ease, opacity .3s 1.1s ease;
+        }
+        .home-list li:nth-child(3) {
+            transition: transform .3s 1.2s, ease, opacity .3s 1.2s ease;
+        }
+        .home.active .home-list li {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .home-list li img {
+            position: absolute;
+            height: 1.31rem;
+            width: 1.31rem;
+            top: 0.33rem;
+            left: 0.5rem;
+            outline: 0;
+            border: 0;
+            background: indianred;
+        }
+        .home-list li .primary {
+            color: rgba(0,0,0,0.8);
+            margin-bottom: 0.1rem;
+        }
+        .home-list li .secondary {
+            color: rgba(0,0,0,0.3);
+        }
+        .ripple {
+            position: absolute;
+            width: 4rem;
+            height: 4rem;
+            margin-left: -2rem;
+            margin-top: -2rem;
+            background: rgba(0, 0, 0, 0.4);
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            -webkit-animation: animRipple 0.4s;
+            animation: animRipple 0.4s;
+            border-radius: 50%;
+        }
+        @-webkit-keyframes animRipple {
+            to {
+                -webkit-transform: scale(3.5);
+                transform: scale(3.5);
+                opacity: 0;
+            }
+        }
+        @keyframes animRipple {
+            to {
+                -webkit-transform: scale(3.5);
+                transform: scale(3.5);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes rotate {
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotate {
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
     </style>
+    <script>
+        function initRootFontSize() {
+            // 1rem = design width / 10 (px);
+            document.documentElement.style.fontSize = window.screen.width / 10 + 'px';
+        }
+
+        window.onresize = initRootFontSize;
+        initRootFontSize();
+    </script>
 </head>
 <body>
-    <header>
-
-    </header>
-    <main>
+    <div class="login">
         <div class="logo"></div>
         <div class="login-form">
             <div class="login-form-row">
@@ -93,19 +364,101 @@
             <button class="login-form-submit">Submit</button>
             <p>Don't have an account yet? <a>Sign up</a></p>
         </div>
-    </main>
-    <footer>
+    </div>
 
-    </footer>
+    <div class="home">
+        <div class="home-top">
+            <button class="home-btn-icon left"></button>
+            <button class="home-btn-icon right"></button>
+            <h4 class="greeting">Good Morning</h4>
+            <div class="user">
+                <img>
+                <span>3</span>
+            </div>
+            <div class="month-nav">
+                March
+                <a class="nav-icon left"></a>
+                <a class="nav-icon right"></a>
+            </div>
+        </div>
+        <div class="home-bottom">
+            <div class="home-week">
+                <span class="week-day">MON</span>
+                <span class="week-day">TUE</span>
+                <span class="week-day">WED</span>
+                <span class="week-day">THU</span>
+                <span class="week-day">FRI</span>
+                <span class="week-day">SAT</span>
+                <span class="week-day">SUN</span>
+                <span class="week-day date">02</span>
+                <span class="week-day date">03</span>
+                <span class="week-day date">04</span>
+                <span class="week-day date">05</span>
+                <span class="week-day date">06</span>
+                <span class="week-day date">07</span>
+                <span class="week-day date">08</span>
+            </div>
+            <ul class="home-list">
+                <li>
+                    <img>
+                    <p class="primary">Feed the cat</p>
+                    <p class="secondary">8-10 a.m</p>
+                </li>
+                <li>
+                    <img>
+                    <p class="primary">Do the coding</p>
+                    <p class="secondary">22:10-23:30 p.m</p>
+                </li>
+                <li>
+                    <img>
+                    <p class="primary">Reading</p>
+                    <p class="secondary">18:00-19:00 p.m</p>
+                </li>
+            </ul>
+        </div>
+        <button class="logout"></button>
+    </div>
 </body>
+<script src="js/jquery.js"></script>
 <script>
-    function initRootFontSize () {
-        // 1rem = design width / 10 (px);
-        document.documentElement.style.fontSize = window.screen.width / 10 + 'px';
+    $(function () {
+        $('.login-form-submit').on('click', function (e) {
+            var that = this;
+
+            ripple($(this), e);
+            $(that).addClass('processing');
+
+            setTimeout(function () {
+                $(that).addClass('success');
+
+                setTimeout(function () {
+                    $('.home').show();
+                    $('.home').css('top'); // force browser to apply display: block first before add active class
+                    $('.home').addClass('active');
+
+                    setTimeout(function () {
+                        $('.login').hide().addClass('inactive');
+                    }, 500);
+                }, 330);
+            }, 1000);
+        });
+
+        $('.back-btn').on('click', function () {
+
+        });
+    });
+
+
+
+    function ripple (elem, e) {
+        $(".ripple").remove();
+        var elTop = elem.offset().top,
+                elLeft = elem.offset().left,
+                x = e.pageX - elLeft,
+                y = e.pageY - elTop;
+        var $ripple = $("<div class='ripple'></div>");
+        $ripple.css({top: y, left: x});
+        elem.append($ripple);
     }
-
-    window.onresize = initRootFontSize;
-    initRootFontSize();
-
 </script>
 </html>
